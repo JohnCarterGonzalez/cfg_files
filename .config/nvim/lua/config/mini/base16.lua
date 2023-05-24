@@ -1,21 +1,11 @@
 require("mini.base16").setup({
-	palette = {
-		base00 = "#2b3339",
-		base01 = "#323c41",
-		base02 = "#503946",
-		base03 = "#868d80",
-		base04 = "#d3c6aa",
-		base05 = "#d3c6aa",
-		base06 = "#e9e8d2",
-		base07 = "#fff9e8",
-		base08 = "#7fbbb3",
-		base09 = "#d699b6",
-		base0A = "#83c092",
-		base0B = "#dbbc7f",
-		base0C = "#e69875",
-		base0D = "#a7c080",
-		base0E = "#e67e80",
-		base0F = "#d699b6",
+   	palette = {
+	    base00 = '#191724', base01 = '#1f1d2e', base02 = '#26233a', base03 = '#555169',
+	    base04 = '#6e6a86', base05 = '#e0def4', base06 = '#f0f0f3', base07 = '#c5c3ce',
+	    base08 = '#e2e1e7', base09 = '#eb6f92', base0A = '#f6c177', base0B = '#ebbcba',
+	    base0C = '#31748f', base0D = '#9ccfd8', base0E = '#c4a7e7', base0F = '#e5e5e5'
 	},
-	use_cterm = true,
+ use_cterm = true,
 })
+--vim.cmd [[colorscheme base16-rose-pine]]
+vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]

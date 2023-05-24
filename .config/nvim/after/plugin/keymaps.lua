@@ -19,6 +19,8 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- jk to ESC
 keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
+keymap("n", "<leader>n", ":bn<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>p", ":bp<CR>", { noremap = true, silent = true })
 
 local keys = {
   ['cr']        = vim.api.nvim_replace_termcodes('<CR>', true, true, true),

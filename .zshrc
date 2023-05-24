@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="norm"
+ZSH_THEME="my-theme"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -41,7 +41,7 @@ ZSH_THEME="norm"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -52,7 +52,7 @@ ENABLE_CORRECTION="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -60,7 +60,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="mm/dd/yyyy"
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -70,64 +70,24 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	git
-	aws
-	rails
-	brew
-	golang
-)
-
-# Configure Homebrew Completions to play nice with oh-my-zsh
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='nvim'
+# My configuration
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
 fi
 
-# Run TMUX on terminal startup
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#   exec tmux
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias config='/usr/bin/git --git-dir=/Users/johncartergonzalez/.cfg/ --work-tree=/Users/johncartergonzalez'
 alias notes='/usr/bin/git --git-dir=$HOME/.notebook/ --work-tree=$HOME'
 
 # App Aliases 
 alias vi="nvim"
-
+  
 # Config Aliases 
 alias vimrc="nvim ~/.vimrc"
 alias zshrc="nvim ~/.zshrc"
 alias nvrc="nvim ~/.config/nvim/init.vim"
-
-# Directory Aliases 
-alias ruby-me-baby="cd ~/Documents/GitHub/ruby_on_rails"
-alias work="cd ~/Documents/GitHub/work"
-alias gopher="cd ~/Documents/GitHub/gopher"
 
 # Docker aliases
 alias dcb="docker-compose build"
@@ -149,7 +109,7 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 
-export BAT_THEME="gruvbox"
+export BAT_THEME="ansi"
 
 eval "$(zoxide init zsh)"
 
@@ -164,7 +124,21 @@ export FZF_CTRL_T_OPTS="
  
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+export FZF_DEFAULT_OPTS="
+	--color=fg:$subtle,bg:$base,hl:$rose
+	--color=fg+:$text,bg+:$overlay,hl+:$rose
+	--color=border:$highlightMed,header:$pine,gutter:$base
+	--color=spinner:$gold,info:$foam,separator:$highlightMed
+	--color=pointer:$iris,marker:$love,prompt:$subtle"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 
 export PATH="$PATH:$HOME/.rvm/bin"
 alias config='/usr/bin/git --git-dir=/Users/cpt_n3m0/.cfg/ --work-tree=/Users/cpt_n3m0'
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"

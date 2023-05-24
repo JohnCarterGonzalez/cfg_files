@@ -44,11 +44,11 @@ local cmp = require'cmp'
       ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item.
     }),
     sources = cmp.config.sources({
-    { name = 'copilot', group_index = 2},
     {name = 'path', group_index = 2},
     {name = 'nvim_lsp', group_index = 2},
     {name = 'buffer', keyword_length = 3},
     {name = 'vsnip', keyword_length = 2, group_index = 2},
+    { name = 'copilot', group_index = 2}
     })
   })
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).

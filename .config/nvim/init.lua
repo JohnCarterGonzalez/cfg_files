@@ -2,9 +2,9 @@ local cmd = vim.cmd
 local fn = vim.fn
 local api = vim.api
 
--- require("config.lsp")
--- require("config.trouble")
---require("config.telescope")
+require("config.lsp")
+require("config.trouble")
+require("config.telescope")
 --require("config.colors")
 
 -- Global object
@@ -55,24 +55,13 @@ local function plugins(use)
 
   -- Aesthetic
 	use({ "kyazdani42/nvim-web-devicons" })
+	use({ "RRethy/nvim-base16" })
 
  -- Core Config
-  use({ "fatih/vim-go"})
 	use({ "nvim-lua/plenary.nvim" })
   use ({
     'nvim-telescope/telescope.nvim', tag = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
-  })
-  use ({
-  'pwntester/octo.nvim',
-  requires = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'kyazdani42/nvim-web-devicons',
-  },
-  config = function ()
-    require"octo".setup()
-  end
   })
   use({
 		"echasnovski/mini.nvim",
@@ -80,6 +69,13 @@ local function plugins(use)
 			require("config.mini")
 		end,
 	})
+  use({ "tpope/vim-endwise"})
+  use({ "tpope/vim-rails"})
+  use({ "tpope/vim-fugitive"})
+  use({ "tpope/vim-rhubarb"})
+  use({ "tpope/vim-sleuth"})
+  use({ "jiangmiao/auto-pairs"})
+
   -- LSP Setup
   use ({
     "williamboman/mason.nvim",
@@ -99,6 +95,8 @@ local function plugins(use)
       require("copilot_cmp").setup()
     end
   })
+
+  -- Highlight them errors
   use({
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",

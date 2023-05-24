@@ -10,6 +10,7 @@ opt.mouse = "a"
 opt.number = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
+opt.cursorline = true
 opt.smartcase = true
 opt.splitbelow = true
 opt.splitright = true
