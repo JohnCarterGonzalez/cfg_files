@@ -1,0 +1,4 @@
+take 10 (filter even [43..])
+take 10 (filter even [43...])
+take 10 (filter even [43...})
+6+ 3^2 *4

@@ -1,11 +1,51 @@
-require("mini.base16").setup({
-   	palette = {
-	    base00 = '#191724', base01 = '#1f1d2e', base02 = '#26233a', base03 = '#555169',
-	    base04 = '#6e6a86', base05 = '#e0def4', base06 = '#f0f0f3', base07 = '#c5c3ce',
-	    base08 = '#e2e1e7', base09 = '#eb6f92', base0A = '#f6c177', base0B = '#ebbcba',
-	    base0C = '#31748f', base0D = '#9ccfd8', base0E = '#c4a7e7', base0F = '#e5e5e5'
+require('rose-pine').setup({
+	--- @usage 'auto'|'main'|'moon'|'dawn'
+	variant = 'auto',
+	--- @usage 'main'|'moon'|'dawn'
+	dark_variant = 'main',
+	bold_vert_split = true,
+	dim_nc_background = true,
+	disable_background = true,
+	disable_float_background = true,
+	disable_italics = false,
+
+	--- @usage string hex value or named color from rosepinetheme.com/palette
+	groups = {
+		background = 'base',
+		background_nc = '_experimental_nc',
+		panel = 'surface',
+		panel_nc = 'base',
+		border = 'highlight_med',
+		comment = '#D3C2CF',
+		link = 'iris',
+		punctuation = 'subtle',
+
+		error = 'love',
+		hint = 'iris',
+		info = 'foam',
+		warn = 'gold',
+
+		headings = {
+			h1 = 'iris',
+			h2 = 'foam',
+			h3 = 'rose',
+			h4 = 'gold',
+			h5 = 'pine',
+			h6 = 'foam',
+		}
+		-- or set all headings at once
+		-- headings = 'subtle'
 	},
- use_cterm = true,
+
+	-- Change specific vim highlight groups
+	-- https://github.com/rose-pine/neovim/wiki/Recipes
+	highlight_groups = {
+		ColorColumn = { bg = 'rose' },
+
+		-- Blend colours against the "base" background
+		CursorLine = { bg = 'foam', blend = 10 },
+		StatusLine = { fg = 'love', bg = 'love', blend = 10 },
+	}
 })
---vim.cmd [[colorscheme base16-rose-pine]]
+vim.cmd('colorscheme rose-pine')
 vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]

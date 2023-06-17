@@ -5,7 +5,9 @@ local api = vim.api
 require("config.lsp")
 require("config.trouble")
 require("config.telescope")
---require("config.colors")
+require("config.lualine")
+require("config.which-key")
+require("config.comment")
 
 -- Global object
 _G.NVMM = {}
@@ -53,55 +55,72 @@ end
 local function plugins(use)
 	use({ "wbthomason/packer.nvim" })
 
-  -- Aesthetic
+	-- Aesthetic
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "RRethy/nvim-base16" })
+	use({ 'rose-pine/neovim', as = 'rose-pine' })
+	use({ "nvim-lualine/lualine.nvim" })
 
- -- Core Config
+	-- Core Config
 	use({ "nvim-lua/plenary.nvim" })
-  use ({
-    'nvim-telescope/telescope.nvim', tag = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  })
-  use({
-		"echasnovski/mini.nvim",
-		config = function()
-			require("config.mini")
-		end,
+	use ({
+	'nvim-telescope/telescope.nvim', tag = '0.1.x',
+	requires = { {'nvim-lua/plenary.nvim'} }
 	})
-  use({ "tpope/vim-endwise"})
-  use({ "tpope/vim-rails"})
-  use({ "tpope/vim-fugitive"})
-  use({ "tpope/vim-rhubarb"})
-  use({ "tpope/vim-sleuth"})
-  use({ "jiangmiao/auto-pairs"})
+	use ({
+	'ThePrimeagen/harpoon',
+	requires = { {'nvim-lua/plenary.nvim'} }
+	})
+	use({
+	"echasnovski/mini.nvim",
+	config = function()
+		require("config.mini")
+	end,
+	})
+	use({ "tpope/vim-endwise"})
+	use({ "tpope/vim-fugitive"})
+	use({ "tpope/vim-rhubarb"})
+	use({ "tpope/vim-sleuth"})
+	use({ "jiangmiao/auto-pairs"})
+	use({ "folke/which-key.nvim"})
+	use({ "preservim/nerdcommenter"})
 
-  -- LSP Setup
-  use ({
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-    "hrsh7th/cmp-nvim-lsp",
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/nvim-cmp',
-  })
-  use ({ "zbirenbaum/copilot.lua"})
-  use ({
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function ()
-      require("copilot_cmp").setup()
-    end
-  })
+	-- LSP
+	use {
+	  'VonHeikemen/lsp-zero.nvim',
+	  branch = 'v2.x',
+	  requires = {
+	    {'neovim/nvim-lspconfig'},             -- Required
+	    {                                      -- Optional
+	      'williamboman/mason.nvim',
+	      run = function()
+		pcall(vim.cmd, 'MasonUpdate')
+	      end,
+	    },
+	    {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-  -- Highlight them errors
-  use({
-    "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
-  })
-  -- 
+	    -- Autocompletion
+	    {'hrsh7th/nvim-cmp'},     -- Required
+	    {'hrsh7th/cmp-nvim-lsp'}, -- Required
+	    {'L3MON4D3/LuaSnip'},     -- Required
+	    { 'hrsh7th/cmp-path' },
+	    { 'hrsh7th/cmp-cmdline' },
+	    { 'hrsh7th/cmp-buffer' },
+	  }
+	}
+	use {
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("config.copilot")
+		end,
+	}
+	-- Highlight them errors
+	use({
+	"folke/trouble.nvim",
+	requires = "nvim-tree/nvim-web-devicons",
+	})
+	-- 
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -110,7 +129,25 @@ local function plugins(use)
 		end,
 	})
 	use({ "nvim-treesitter/playground" })
-
+use {
+    "nvim-neorg/neorg",
+    config = function()
+        require('neorg').setup {
+            load = {
+                ["core.defaults"] = {}, -- Loads default behaviour
+                ["core.concealer"] = {}, -- Adds pretty icons to your documents
+                ["core.dirman"] = { -- Manages Neorg workspaces
+                    config = {
+                        workspaces = {
+                            notes = "~/.notes",
+                        },
+                    },
+                },
+            },
+        }
+    end,
+    requires = "nvim-lua/plenary.nvim",
+}
 	-- Bootstrap Neovim
 	if packer_bootstrap then
 		print("Neovim restart is required after installation!")

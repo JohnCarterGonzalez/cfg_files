@@ -10,6 +10,7 @@ opt.mouse = "a"
 opt.number = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
+opt.colorcolumn = "80"
 opt.cursorline = true
 opt.smartcase = true
 opt.splitbelow = true
@@ -20,6 +21,7 @@ opt.updatetime = 250
 opt.laststatus = 3
 opt.cmdheight = 0
 opt.expandtab = true
+opt.filetype = "on"
 
 opt.path:remove("/usr/include")
 opt.path:append("**")
