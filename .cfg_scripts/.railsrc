@@ -1,0 +1,10 @@
+# ~/cfg_scripts/.railsrc
+
+-d postgresql
+-c tailwind
+-j esbuild 
+-a propshaft
+--skip-spring
+-T
+--template=~/cfg_scripts/rails_template.rb
+
