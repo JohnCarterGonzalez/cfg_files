@@ -10,10 +10,7 @@
       "ff": "editor::Format",
       "fo": "editor::Fold",
       // Pane Navigation
-      "shift-h": "pane::SplitRight",
-      "shift-j": "pane::SplitDown",
-      "shift-k": "pane::SplitUp",
-      "shift-l": "pane::SplitLeft"
+      "shift-ff": "file_finder::Toggle"
     }
   }
 ]

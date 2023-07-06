@@ -1,0 +1,5 @@
+inherits = "kanagawa"
+"ui.background" = "white"
+
+[palette]
+white = "#ffffff"

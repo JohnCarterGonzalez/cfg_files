@@ -17,18 +17,24 @@
   "autosave": "on_window_change",
   "vim_mode": true,
   "language_overrides": {
+    "Markdown": {
+      "show_copilot_suggestions": false
+    },
+    "Plain Text": {
+      "show_copilot_suggestions": false
+    },
     "Ruby": {
       "format_on_save": "language_server",
       "preferred_line_length": 80,
-      "soft_wrap": "preferred_line_length",
-      "tab_size": 2
-    }
-  },
-  "lsp": {
-    "solargraph": {
-      "initialization_options": {
-        "diagnostics": true,
-        "formatting": true
+      "soft_wrap": "editor_width",
+      "tab_size": 2,
+      "lsp": {
+        "solargraph": {
+          "initialization_options": {
+            "diagnostics": true,
+            "formatting": false
+          }
+        }
       }
     }
   }

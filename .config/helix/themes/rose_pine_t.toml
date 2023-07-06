@@ -1,0 +1,7 @@
+inherits = "rose_pine"
+"comment" = { fg = "comment", modifiers = ["italic"] }
+"ui.background" = "white"
+
+[palette]
+white = "#ffffff"
+comment = "#D8BFD8"

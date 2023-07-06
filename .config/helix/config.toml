@@ -1,0 +1,60 @@
+theme= "rose_pine_t"
+
+#################################################
+## Editor Cfg
+#################################################
+[editor]
+true-color = true
+line-number= "relative"
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.lsp]
+display-messages = true
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+
+[editor.whitespace.render]
+tab = "all"
+
+[editor.whitespace.characters]
+nbsp = "⍽"
+tab = "→"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+#################################################
+## Key Cfg
+#################################################
+[keys.normal]
+"#" = "toggle_comments"
+"esc" = [ "normal_mode", ":format", ":write"]
+"C-p" = ["move_line_up", "scroll_up"]
+"C-n" = ["move_line_down", "scroll_down"]
+"V" = ["extend_line_below", "select_mode"]
+
+G = "goto_file_end"
+X = "extend_line_above"
+D = "kill_to_line_end"
+
+[keys.normal.g]
+q = ":reflow"
+
+[keys.normal.space]
+q = ":quit"
+w = ":write"
